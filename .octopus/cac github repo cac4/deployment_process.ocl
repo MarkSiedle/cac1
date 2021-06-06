@@ -9,6 +9,6 @@ steps "Run a Script" {
             Octopus.Action.Script.Syntax = "PowerShell"
         }
 
-        worker_pool_id_or_name = "Default Worker Pool"
+        worker_pool_id_or_name = "AnotherWorkerPool"
     }
 }
