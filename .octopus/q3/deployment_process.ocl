@@ -13,3 +13,34 @@ steps "Run a Script" {
         worker_pool_id_or_name = "Default Worker Pool"
     }
 }
+
+steps "Deploy a Package" {
+    properties = {
+        Octopus.Action.TargetRoles = "region"
+    }
+
+
+    actions "Deploy a Package" {
+        action_type = "Octopus.TentaclePackage"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "AzureWebApp"
+        }
+
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed_id_or_name = "Octopus Server (built-in)"
+            package_id = "AzureWebApp"
+            properties = {
+                SelectionMode = "immediate"
+            }
+
+        }
+    }
+}
