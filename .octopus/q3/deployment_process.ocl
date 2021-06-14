@@ -2,7 +2,7 @@ steps "Run a Script" {
 
     actions "Run a Script" {
         action_type = "Octopus.Script"
-        environments = ["Dev"]
+        environments = ["Dev", "Production"]
         properties = {
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = "\"Test\""
